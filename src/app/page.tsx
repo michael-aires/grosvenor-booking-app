@@ -55,11 +55,19 @@ export default function BookingPage() {
             });
 
             if (res.ok) {
-                setShowSuccess(true);
-                setFormData({ name: '', email: '', phone: '', notes: '' });
-                setSelectedSlot(null);
-                fetchAvailability(); // Refresh slots
-                setTimeout(() => setShowSuccess(false), 5000);
+                const data = await res.json();
+
+                // Store booking details for confirmation page
+                sessionStorage.setItem('bookingDetails', JSON.stringify({
+                    ...formData,
+                    date: selectedSlot.date,
+                    time: selectedSlot.start,
+                    timeEnd: selectedSlot.end,
+                    confirmationNumber: data.confirmationNumber
+                }));
+
+                // Redirect to confirmation page
+                window.location.href = '/confirmation';
             } else {
                 alert('Booking failed. Please try again.');
             }
@@ -109,8 +117,8 @@ export default function BookingPage() {
                                         setSelectedSlot(null);
                                     }}
                                     className={`p-4 rounded-lg border-2 transition-all ${selectedDate === date
-                                            ? 'border-blue-500 bg-blue-50 shadow-md'
-                                            : 'border-gray-200 hover:border-blue-300'
+                                        ? 'border-blue-500 bg-blue-50 shadow-md'
+                                        : 'border-gray-200 hover:border-blue-300'
                                         }`}
                                 >
                                     <div className="flex items-center gap-3">
@@ -145,8 +153,8 @@ export default function BookingPage() {
                                                 key={idx}
                                                 onClick={() => setSelectedSlot(slot)}
                                                 className={`p-3 rounded-lg border-2 transition-all ${selected
-                                                        ? 'border-green-500 bg-green-50 shadow-md'
-                                                        : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50'
+                                                    ? 'border-green-500 bg-green-50 text-green-900 shadow-md'
+                                                    : 'border-gray-200 text-gray-900 hover:border-blue-400 hover:bg-blue-50'
                                                     }`}
                                             >
                                                 <div className="flex items-center justify-center gap-2">

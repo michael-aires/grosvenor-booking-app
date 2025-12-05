@@ -75,7 +75,9 @@ export async function POST(req: Request) {
             }
         }
 
-        return NextResponse.json({ success: true, eventId: event.data.id });
+        const confirmationNumber = `BK-${Date.now()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+
+        return NextResponse.json({ success: true, eventId: event.data.id, confirmationNumber });
 
     } catch (error) {
         console.error('Booking error:', error);
