@@ -94,6 +94,7 @@ export default function BookingPage() {
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-lg shadow-xl p-8 mb-6">
                     <div className="text-center mb-8">
+                        <img src="/logo.jpg" alt="Grosvenor Ambleside" className="h-24 mx-auto mb-6" />
                         <h1 className="text-4xl font-bold text-gray-900 mb-2">Book Your Appointment</h1>
                         <p className="text-gray-600">Select a date and time slot for your 15-minute session</p>
                     </div>
