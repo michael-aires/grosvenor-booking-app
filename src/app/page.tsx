@@ -11,6 +11,7 @@ export default function BookingPage() {
     const [selectedSlot, setSelectedSlot] = useState<{ date: string; start: string; end: string } | null>(null);
     const [availableSlots, setAvailableSlots] = useState<{ date: string; start: string; end: string }[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -40,7 +41,9 @@ export default function BookingPage() {
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!selectedSlot) return;
+        if (!selectedSlot || isSubmitting) return;
+
+        setIsSubmitting(true);
 
         try {
             const res = await fetch('/api/book', {
@@ -70,10 +73,12 @@ export default function BookingPage() {
                 window.location.href = '/confirmation';
             } else {
                 alert('Booking failed. Please try again.');
+                setIsSubmitting(false);
             }
         } catch (error) {
             console.error('Booking error', error);
             alert('An error occurred.');
+            setIsSubmitting(false);
         }
     };
 
@@ -216,9 +221,21 @@ export default function BookingPage() {
 
                                 <button
                                     type="submit"
-                                    className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
+                                    disabled={isSubmitting}
+                                    className={`w-full py-3 rounded-lg font-semibold transition-all shadow-md flex items-center justify-center gap-2
+                                        ${isSubmitting
+                                            ? 'bg-blue-400 cursor-not-allowed text-white'
+                                            : 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 active:scale-[0.99]'
+                                        }`}
                                 >
-                                    Confirm Booking
+                                    {isSubmitting ? (
+                                        <>
+                                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                                            Processing...
+                                        </>
+                                    ) : (
+                                        'Confirm Booking'
+                                    )}
                                 </button>
                             </form>
                         </div>
