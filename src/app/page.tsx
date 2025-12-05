@@ -245,16 +245,7 @@ export default function BookingPage() {
                     )}
                 </div>
 
-                {/* Admin Link */}
-                <div className="text-center">
-                    <Link
-                        href="/admin"
-                        className="text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2 mx-auto justify-center"
-                    >
-                        <Lock size={16} />
-                        Admin Access
-                    </Link>
-                </div>
+
             </div>
         </div>
     );
