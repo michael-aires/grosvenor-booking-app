@@ -125,7 +125,7 @@ export default function ConfirmationPage() {
 
                     {/* Return Button */}
                     <Link
-                        href="/"
+                        href="https://grosvenorambleside.com/"
                         className="block w-full bg-[#1a1a1a] text-white text-center py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
                     >
                         Return to Grosvenor Ambleside website
