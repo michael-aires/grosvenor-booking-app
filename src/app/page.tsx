@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, User, Mail, Phone, Lock, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
-const EVENT_DATES = ['2025-12-13', '2025-12-14'];
+const EVENT_DATES = ['2025-12-13'];
 
 export default function BookingPage() {
     const [selectedDate, setSelectedDate] = useState(EVENT_DATES[0]);

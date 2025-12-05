@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { nylas } from '@/lib/nylas';
 
-const EVENT_DATES = ['2025-12-13', '2025-12-14'];
+const EVENT_DATES = ['2025-12-13'];
 const START_TIME = '11:00';
 const END_TIME = '16:00';
 const SLOT_DURATION = 15; // minutes
@@ -18,9 +18,9 @@ export async function GET() {
 
         // Calculate start and end time for the query (from first day start to last day end)
         // We'll query each day separately or the whole range.
-        // Let's query the whole range from Dec 13 00:00 to Dec 14 23:59
+        // Let's query the whole range from Dec 13 00:00 to Dec 13 23:59
         const startTime = Math.floor(new Date('2025-12-13T00:00:00-08:00').getTime() / 1000);
-        const endTime = Math.floor(new Date('2025-12-14T23:59:59-08:00').getTime() / 1000);
+        const endTime = Math.floor(new Date('2025-12-13T23:59:59-08:00').getTime() / 1000);
 
 
 

@@ -9,7 +9,7 @@ export async function GET() {
         }
 
         const startTime = Math.floor(new Date('2025-12-13T00:00:00').getTime() / 1000);
-        const endTime = Math.floor(new Date('2025-12-14T23:59:59').getTime() / 1000);
+        const endTime = Math.floor(new Date('2025-12-13T23:59:59').getTime() / 1000);
 
         const events = await nylas.events.list({
             identifier: grantId,

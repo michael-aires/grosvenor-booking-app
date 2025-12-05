@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Lock, LogOut } from 'lucide-react';
 import Link from 'next/link';
 
-const EVENT_DATES = ['2025-12-13', '2025-12-14'];
+const EVENT_DATES = ['2025-12-13'];
 
 export default function AdminPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
