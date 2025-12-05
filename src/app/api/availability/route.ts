@@ -19,8 +19,8 @@ export async function GET() {
         // Calculate start and end time for the query (from first day start to last day end)
         // We'll query each day separately or the whole range.
         // Let's query the whole range from Dec 13 00:00 to Dec 14 23:59
-        const startTime = Math.floor(new Date('2025-12-13T00:00:00').getTime() / 1000);
-        const endTime = Math.floor(new Date('2025-12-14T23:59:59').getTime() / 1000);
+        const startTime = Math.floor(new Date('2025-12-13T00:00:00-08:00').getTime() / 1000);
+        const endTime = Math.floor(new Date('2025-12-14T23:59:59-08:00').getTime() / 1000);
 
 
 
@@ -41,8 +41,8 @@ export async function GET() {
         const allSlots: { date: string; start: string; end: string }[] = [];
 
         EVENT_DATES.forEach(dateStr => {
-            const start = new Date(`${dateStr}T${START_TIME}`);
-            const end = new Date(`${dateStr}T${END_TIME}`);
+            const start = new Date(`${dateStr}T${START_TIME}-08:00`);
+            const end = new Date(`${dateStr}T${END_TIME}-08:00`);
             let current = new Date(start);
 
             while (current < end) {
@@ -73,8 +73,8 @@ export async function GET() {
         // Nylas returns unix timestamp for when.startTime usually.
 
         const availableSlots = allSlots.filter(slot => {
-            const slotStart = new Date(`${slot.date}T${slot.start}`).getTime() / 1000;
-            const slotEnd = new Date(`${slot.date}T${slot.end}`).getTime() / 1000;
+            const slotStart = new Date(`${slot.date}T${slot.start}-08:00`).getTime() / 1000;
+            const slotEnd = new Date(`${slot.date}T${slot.end}-08:00`).getTime() / 1000;
 
             // Check if any event overlaps
             const isBooked = events.data.some((event: any) => {

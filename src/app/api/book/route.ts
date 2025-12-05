@@ -17,9 +17,9 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'NYLAS_GRANT_ID is not set' }, { status: 500 });
         }
 
-        // 1. Create Event in Nylas
-        const startTime = Math.floor(new Date(`${date}T${time}`).getTime() / 1000);
-        const endTime = Math.floor(new Date(`${date}T${timeEnd}`).getTime() / 1000);
+        // 1. Create Event in Nylas (Force PST)
+        const startTime = Math.floor(new Date(`${date}T${time}-08:00`).getTime() / 1000);
+        const endTime = Math.floor(new Date(`${date}T${timeEnd}-08:00`).getTime() / 1000);
 
         const event = await nylas.events.create({
             identifier: grantId,
