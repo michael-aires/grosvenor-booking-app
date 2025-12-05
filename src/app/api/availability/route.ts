@@ -50,8 +50,8 @@ export async function GET() {
                 if (slotEnd <= end) {
                     allSlots.push({
                         date: dateStr,
-                        start: current.toTimeString().slice(0, 5),
-                        end: slotEnd.toTimeString().slice(0, 5),
+                        start: current.toLocaleTimeString('en-US', { timeZone: 'America/Vancouver', hour12: false, hour: '2-digit', minute: '2-digit' }),
+                        end: slotEnd.toLocaleTimeString('en-US', { timeZone: 'America/Vancouver', hour12: false, hour: '2-digit', minute: '2-digit' }),
                     });
                 }
                 current = new Date(current.getTime() + (SLOT_DURATION + GAP_DURATION) * 60000);
