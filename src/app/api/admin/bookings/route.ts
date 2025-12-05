@@ -35,11 +35,12 @@ export async function GET() {
             const start = new Date(event.when.startTime * 1000);
             const end = new Date(event.when.endTime * 1000);
 
-            // Format date as YYYY-MM-DD
-            const date = start.toISOString().split('T')[0];
-            // Format time as HH:MM
-            const time = start.toTimeString().slice(0, 5);
-            const timeEnd = end.toTimeString().slice(0, 5);
+            // Format date as YYYY-MM-DD in Vancouver time
+            const date = start.toLocaleDateString('en-CA', { timeZone: 'America/Vancouver' });
+
+            // Format time as HH:MM in Vancouver time
+            const time = start.toLocaleTimeString('en-US', { timeZone: 'America/Vancouver', hour12: false, hour: '2-digit', minute: '2-digit' });
+            const timeEnd = end.toLocaleTimeString('en-US', { timeZone: 'America/Vancouver', hour12: false, hour: '2-digit', minute: '2-digit' });
 
             return {
                 id: event.id,
