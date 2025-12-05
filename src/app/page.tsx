@@ -139,7 +139,7 @@ export default function BookingPage() {
                                         <Calendar className="text-blue-600" size={24} />
                                         <div className="text-left">
                                             <div className="font-semibold text-gray-900">{formatDate(date)}</div>
-                                            <div className="text-sm text-gray-500">10:00 AM - 4:00 PM</div>
+                                            <div className="text-sm text-gray-500">11:00 AM - 4:00 PM</div>
                                         </div>
                                     </div>
                                 </button>

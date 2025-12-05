@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { nylas } from '@/lib/nylas';
 
 const EVENT_DATES = ['2025-12-13', '2025-12-14'];
-const START_TIME = '10:00';
+const START_TIME = '11:00';
 const END_TIME = '16:00';
 const SLOT_DURATION = 15; // minutes
 const GAP_DURATION = 5; // minutes
