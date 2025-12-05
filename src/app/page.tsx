@@ -142,6 +142,88 @@ export default function BookingPage() {
                         </div>
                     </div>
 
+                    {/* Booking Form */}
+                    {selectedSlot && (
+                        <div className="mb-8 animate-in fade-in slide-in-from-top-4 duration-300">
+                            <form onSubmit={handleFormSubmit} className="bg-blue-50 border border-blue-100 rounded-lg p-6 shadow-sm">
+                                <div className="flex justify-between items-center mb-6">
+                                    <h3 className="text-xl font-bold text-gray-900">
+                                        Complete Your Booking
+                                    </h3>
+                                    <div className="text-blue-600 font-semibold bg-white px-4 py-1 rounded-full text-sm border border-blue-200">
+                                        {selectedSlot.start} - {selectedSlot.end}
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            <User size={16} className="inline mr-1" />
+                                            Full Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            required
+                                            value={formData.name}
+                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                            placeholder="John Doe"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            <Mail size={16} className="inline mr-1" />
+                                            Email *
+                                        </label>
+                                        <input
+                                            type="email"
+                                            required
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                            placeholder="john@example.com"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        <Phone size={16} className="inline mr-1" />
+                                        Phone Number
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        value={formData.phone}
+                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                        placeholder="(555) 123-4567"
+                                    />
+                                </div>
+
+                                <div className="mb-6">
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Additional Notes
+                                    </label>
+                                    <textarea
+                                        value={formData.notes}
+                                        onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                                        rows={3}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                        placeholder="Any special requests or information..."
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
+                                >
+                                    Confirm Booking
+                                </button>
+                            </form>
+                        </div>
+                    )}
+
                     {/* Time Slot Selection */}
                     <div className="mb-8">
                         <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -178,80 +260,7 @@ export default function BookingPage() {
                         )}
                     </div>
 
-                    {/* Booking Form */}
-                    {selectedSlot && (
-                        <form onSubmit={handleFormSubmit} className="bg-gray-50 rounded-lg p-6">
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                                Complete Your Booking for {selectedSlot.start} - {selectedSlot.end}
-                            </h3>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        <User size={16} className="inline mr-1" />
-                                        Full Name *
-                                    </label>
-                                    <input
-                                        type="text"
-                                        required
-                                        value={formData.name}
-                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        placeholder="John Doe"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        <Mail size={16} className="inline mr-1" />
-                                        Email *
-                                    </label>
-                                    <input
-                                        type="email"
-                                        required
-                                        value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        placeholder="john@example.com"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    <Phone size={16} className="inline mr-1" />
-                                    Phone Number
-                                </label>
-                                <input
-                                    type="tel"
-                                    value={formData.phone}
-                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    placeholder="(555) 123-4567"
-                                />
-                            </div>
-
-                            <div className="mb-6">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Additional Notes
-                                </label>
-                                <textarea
-                                    value={formData.notes}
-                                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                                    rows={3}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    placeholder="Any special requests or information..."
-                                />
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
-                            >
-                                Confirm Booking
-                            </button>
-                        </form>
-                    )}
                 </div>
 
 
