@@ -90,8 +90,16 @@ export default function BookingPage() {
     const timeSlots = availableSlots.filter(s => s.date === selectedDate);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
-            <div className="max-w-4xl mx-auto">
+        <div
+            className="min-h-screen py-12 px-4 flex items-center justify-center bg-cover bg-center bg-no-repeat bg-fixed relative"
+            style={{
+                backgroundImage: `url('https://grosvenorambleside.com/wp-content/uploads/2021/12/Home-hero-5-1433x900.jpg.webp')`
+            }}
+        >
+            {/* Dark Overlay for better contrast if needed, though card is white */}
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+
+            <div className="max-w-4xl mx-auto w-full relative z-10">
                 <div className="bg-white rounded-lg shadow-xl p-8 mb-6">
                     <div className="text-center mb-8">
                         <img src="/logo.jpg" alt="Grosvenor Ambleside" className="h-24 mx-auto mb-6" />
